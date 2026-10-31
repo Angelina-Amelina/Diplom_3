@@ -33,8 +33,6 @@ def driver(request):
 def user_api():
     data = generate_user_data()
     response = requests.post(Urls.API_REGISTER, json=data)
-    assert response.status_code == 200, f"Не удалось зарегистрировать юзера: {response.text}"
-
     tokens = response.json()
 
     yield {

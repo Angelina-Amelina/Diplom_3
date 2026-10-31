@@ -15,7 +15,7 @@ class TestForgotPassword:
         header_page.click_profile_button()
         login_page.click_forgot_password_link()
 
-        assert Urls.FORGOT_PASSWORD_PAGE in driver.current_url
+        assert Urls.FORGOT_PASSWORD_PAGE in login_page.get_current_url()
 
     @allure.title("Ввод почты и клик по кнопке «Восстановить»")
     def test_enter_email_and_click_restore(self, driver):

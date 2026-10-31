@@ -21,7 +21,7 @@ class TestConstructor:
 
         header_page.click_feed_button()
 
-        assert "feed" in driver.current_url
+        assert "feed" in header_page.get_current_url()
 
     @allure.title("При клике на ингредиент появляется всплывающее окно с деталями")
     def test_click_ingredient_opens_modal(self, driver):

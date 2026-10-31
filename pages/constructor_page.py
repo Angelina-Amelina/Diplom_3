@@ -22,8 +22,7 @@ class ConstructorPage(BasePage):
     @allure.step("Проверка закрытия модального окна")
     def is_modal_details_window_closed(self):
         try:
-            WebDriverWait(self.driver, 10).until(
-                expected_conditions.invisibility_of_element_located(ConstructorLocators.MODAL_DETAILS_OPEN))
+            self.wait_for_invisibility(ConstructorLocators.MODAL_DETAILS_OPEN, timeout=10)
             return True
         except Exception:
             return False
@@ -42,8 +41,7 @@ class ConstructorPage(BasePage):
 
     @allure.step("Клик по кнопке 'Оформить заказ'")
     def click_create_order_button(self):
-        element = self.wait_for_visibility(ConstructorLocators.CREATE_ORDER_BUTTON)
-        self.driver.execute_script("arguments[0].click();", element)
+        self.click_element(ConstructorLocators.CREATE_ORDER_BUTTON)
 
     @allure.step("Проверка появления модального окна успешного заказа")
     def is_order_success_modal_displayed(self):
@@ -52,7 +50,5 @@ class ConstructorPage(BasePage):
     @allure.step("Ожидание появления номера заказа в модальном окне")
     def wait_order_number(self, timeout=15):
         element = self.wait_for_visibility(ConstructorLocators.ORDER_NUMBER, timeout)
-        WebDriverWait(self.driver, timeout).until(
-            lambda d: element.text.strip() not in ("", "9999")
-        )
+        self.wait_for_text_to_change(ConstructorLocators.ORDER_NUMBER, bad_texts=("", "9999"), timeout=timeout)
         return element.text.strip()

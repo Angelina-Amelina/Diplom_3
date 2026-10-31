@@ -12,7 +12,7 @@ class TestProfile:
 
         header_page.click_profile_button()
 
-        assert "account" in driver.current_url
+        assert "account" in header_page.get_current_url()
 
     @allure.title("Переход в раздел «История заказов»")
     def test_navigate_to_order_history(self, driver,  authorized_user):
@@ -22,7 +22,7 @@ class TestProfile:
         header_page.click_profile_button()
         login_page.click_order_history_sub_button()
 
-        assert "account/order-history" in driver.current_url
+        assert "account/order-history" in login_page.get_current_url()
 
     @allure.title("Выход из аккаунта")
     def test_logout_from_profile(self, driver,  authorized_user):
