@@ -70,6 +70,11 @@ class BasePage:
             lambda d: any(search_text in el.text for el in d.find_elements(*locator))
         )
 
+    @allure.step("Ожидание обновления URL-адреса")
+    def wait_for_url_contains(self, url_part, timeout=10):
+        return WebDriverWait(self.driver, timeout).until(lambda d: url_part in d.current_url)
 
-
+    @allure.step("Ожидание значения счётчика 'Выполнено за всё время': {expected_count}")
+    def wait_until_condition(self, condition_func, timeout=15):
+        return WebDriverWait(self.driver, timeout).until(lambda d: condition_func())
 

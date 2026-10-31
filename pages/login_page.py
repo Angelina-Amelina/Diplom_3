@@ -1,5 +1,4 @@
 import allure
-from selenium.webdriver.support.wait import WebDriverWait
 from pages.base_page import BasePage
 from locators.login_locators import LoginLocators
 
@@ -41,11 +40,8 @@ class LoginPage(BasePage):
 
     @allure.step("Проверка, что текущий URL соответствует странице логина")
     def is_url_login(self):
-        WebDriverWait(self.driver, 5).until(lambda d: "login" in d.current_url)
-        return True
+        return self.wait_for_url_contains("login", timeout=5)
 
     @allure.step("Ожидание перехода на страницу сброса пароля (reset-password)")
     def is_url_reset_password(self):
-        from selenium.webdriver.support.wait import WebDriverWait
-        WebDriverWait(self.driver, 10).until(lambda d: "reset-password" in d.current_url)
-        return "reset-password" in self.driver.current_url
+        return self.wait_for_url_contains("reset-password", timeout=10)

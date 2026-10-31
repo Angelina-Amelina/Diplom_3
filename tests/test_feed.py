@@ -13,6 +13,7 @@ class TestOrderFeed:
         feed_page = FeedPage(driver)
 
         header_page.click_feed_button()
+        feed_page.wait_for_url_contains("feed")
         feed_page.click_first_order_in_feed()
 
         assert feed_page.is_order_modal_displayed()

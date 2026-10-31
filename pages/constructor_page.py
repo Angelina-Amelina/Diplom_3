@@ -1,7 +1,5 @@
 import allure
 from seletools.actions import drag_and_drop
-from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support import expected_conditions
 from pages.base_page import BasePage
 from locators.constructor_locators import ConstructorLocators
 

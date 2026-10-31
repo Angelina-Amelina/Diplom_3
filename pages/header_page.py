@@ -13,7 +13,7 @@ class HeaderPage(BasePage):
         try:
             self.wait_for_overlay_to_disappear(ConstructorLocators.MODAL_OVERLAY)
         except:
-            pass # Если оверлея и не было, просто идем дальше
+            pass
         self.click_element(HeaderLocators.ORDER_FEED_BUTTON)
 
     @allure.step("Клик по кнопке 'Личный Кабинет' в хедере")

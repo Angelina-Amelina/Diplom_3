@@ -1,5 +1,4 @@
 import allure
-from selenium.webdriver.support.wait import WebDriverWait
 from pages.base_page import BasePage
 from locators.feed_locators import FeedLocators
 
@@ -20,9 +19,8 @@ class FeedPage(BasePage):
 
     @allure.step("Ожидание значения счётчика 'Выполнено за всё время': {expected_count}")
     def wait_total_orders_count(self, expected_count, timeout=15):
-        return WebDriverWait(self.driver, timeout).until(
-            lambda d: self.get_total_orders_count() == expected_count
-        )
+        return self.wait_until_condition(
+            lambda: self.get_total_orders_count() == expected_count, timeout=timeout)
 
     @allure.step("Получение значения счетчика 'Выполнено за сегодня'")
     def get_today_orders_count(self):
